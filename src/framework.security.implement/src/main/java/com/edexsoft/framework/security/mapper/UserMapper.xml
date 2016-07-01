@@ -10,15 +10,126 @@
        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
        See the License for the specific language governing permissions and
        limitations under the License.
+       
+       http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
 -->
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.edexsoft.framework.security.mapper.UserMapper">
+	<resultMap 
+		id="t_frm_sec_user_2_User"
+		type="com.edexsoft.framework.security.User" >
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>  <!-- NUMERIC -->
+        <result column="nick_name" property="nickName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="account" property="account"  javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="password" property="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="description" property="description" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="_created" property="created"/>  
+        <result column="_updated" property="updated"/>
+	</resultMap>
 
-    <select id="getUser" resultType="com.edexsoft.framework.security.User" parameterType="java.lang.Integer">
+	<!--  
+	id	在命名空间中唯一的标识符，可以被用来引用这条语句。
+	parameterType	将会传入这条语句的参数类的完全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过 TypeHandler 推断出具体传入语句的参数，默认值为 unset。
+	resultType	从这条语句中返回的期望类型的类的完全限定名或别名。注意如果是集合情形，那应该是集合可以包含的类型，而不能是集合本身。使用 resultType 或 resultMap，但不能同时使用。
+	resultMap	外部 resultMap 的命名引用。结果集的映射是 MyBatis 最强大的特性，对其有一个很好的理解的话，许多复杂映射的情形都能迎刃而解。使用 resultMap 或 resultType，但不能同时使用。
+	flushCache	将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：false。
+	useCache	将其设置为 true，将会导致本条语句的结果被二级缓存，默认值：对 select 元素为 true。
+	timeout	这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。
+	fetchSize	这是尝试影响驱动程序每次批量返回的结果行数和这个设置值相等。默认值为 unset（依赖驱动）。
+	statementType	STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。
+	resultSetType	FORWARD_ONLY，SCROLL_SENSITIVE 或 SCROLL_INSENSITIVE 中的一个，默认值为 unset （依赖驱动）。
+	databaseId	如果配置了 databaseIdProvider，MyBatis 会加载所有的不带 databaseId 或匹配当前 databaseId 的语句；如果带或者不带的语句都有，则不带的会被忽略。
+	resultOrdered	这个设置仅针对嵌套结果 select 语句适用：如果为 true，就是假设包含了嵌套结果集或是分组了，这样的话当返回一个主结果行的时候，就不会发生有对前面结果集的引用的情况。这就使得在获取嵌套的结果集的时候不至于导致内存不够用。默认值：false。
+	resultSets	这个设置仅对多结果集的情况适用，它将列出语句执行后返回的结果集并每个结果集给一个名称，名称是逗号分隔的。
+	-->
+	<!-- 
+	#{height,javaType=double,jdbcType=NUMERIC,numericScale=2} 
+	#{department, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=departmentResultMap}
+	#{middleInitial, mode=OUT, jdbcType=STRUCT, jdbcTypeName=MY_TYPE, resultMap=departmentResultMap}
+	-->
+	<!-- 
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+	  ... 
+	</trim> 
+	-->
+    <select 
+    	id="findById" 
+    	resultMap="t_frm_sec_user_2_User"
+    	parameterType="java.lang.Integer">
         select * from user where id=#{value}
     </select>
+
+    <select id="findByAccount" 
+    	resultMap="t_frm_sec_user_2_User" 
+    	parameterType="java.lang.String">
+        select * from user where account=#{value}
+    </select>
+    <select id="findAll" 
+    	resultMap="t_frm_sec_user_2_User">
+        select * from user
+    </select>
+	
+	<!--      
+    id	命名空间中的唯一标识符，可被用来代表这条语句。
+	parameterType	将要传入语句的参数的完全限定类名或别名。这个属性是可选的，因为 MyBatis 可以通过 TypeHandler 推断出具体传入语句的参数，默认值为 unset。
+	flushCache	将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：true（对应插入、更新和删除语句）。
+	timeout	这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。
+	statementType	STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。
+	useGeneratedKeys	（仅对 insert 和 update 有用）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系数据库管理系统的自动递增字段），默认值：false。
+	keyProperty	（仅对 insert 和 update 有用）唯一标记一个属性，MyBatis 会通过 getGeneratedKeys 的返回值或者通过 insert 语句的 selectKey 子元素设置它的键值，默认：unset。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。
+	keyColumn	（仅对 insert 和 update 有用）通过生成的键值设置表中的列名，这个设置仅在某些数据库（像 PostgreSQL）是必须的，当主键列不是表中的第一列的时候需要设置。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。
+	databaseId	如果配置了 databaseIdProvider，MyBatis 会加载所有的不带 databaseId 或匹配当前 databaseId 的语句；如果带或者不带的语句都有，则不带的会被忽略。
+	-->
+	<!--
+	MySQL 和 SQL Server 自动生成id
+	<insert ... useGeneratedKeys="true" keyProperty="id"> 
+	-->
+    <insert 
+    	id="insert" 
+    	parameterType="com.edexsoft.framework.security.User"
+    	useGeneratedKeys="true" 
+    	keyProperty="id">  
+         insert into User(nick_name,account,password,description,_created,_updated)    
+         values(#{nickName},#{account},#{password},#{description},#{created},#{updated})  
+     </insert>  
+     <!--
+     
+     <update id="updateAuthorIfNecessary">
+	  update Author
+	    <trim prefix="SET" suffixOverrides=",">
+	      <if test="username != null">username=#{username},</if>
+	      <if test="password != null">password=#{password},</if>
+	      <if test="email != null">email=#{email},</if>
+	      <if test="bio != null">bio=#{bio}</if>
+	    </trim>
+	  where id=#{id}
+	</update>
+      
+	 -->  
+     <update id="update" parameterType="com.edexsoft.framework.security.User">  
+         update 
+         	t_frm_sec_user u   
+         set 
+         	u.nick_name = #{nickName},
+         	u.account =#{account},
+         	u.password =#{password},
+         	u.description =#{description},
+         	u._created =#{created},
+         	u._updated =#{updated} 
+         where 
+         	u.id = #{id}  
+     </update>
+     <!-- 删除 -->  
+     <delete id="delete" parameterType="java.lang.Integer">  
+         delete from t_frm_sec_user u   
+         where u.id = #{id}  
+     </delete>
+     
+     <delete id="deleteAll">  
+         delete from t_frm_sec_user u     
+     </delete>
 
 </mapper>
