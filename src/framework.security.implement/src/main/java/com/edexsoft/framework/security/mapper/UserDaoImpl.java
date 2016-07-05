@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import com.edexsoft.framework.security.User;
 
+//@service("userDao")
 public class UserDaoImpl extends SqlSessionDaoSupport implements UserMapper{
 	
 //	@Override
