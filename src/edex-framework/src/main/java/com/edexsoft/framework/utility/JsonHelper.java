@@ -1,4 +1,4 @@
-package com.ksg.framework.utility;
+package com.edexsoft.framework.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

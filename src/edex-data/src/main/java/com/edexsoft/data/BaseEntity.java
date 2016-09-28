@@ -8,19 +8,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public abstract class BaseEntity implements Cloneable, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private long id;
+	private Long id;
 
 	@JsonIgnore
 	private Date metaCreated;
 	
 	@JsonIgnore
 	private Date metaUpdated;
+	
+	@JsonIgnore
+	private Integer metaLogicFlag;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -39,6 +42,14 @@ public abstract class BaseEntity implements Cloneable, Serializable {
 	public void setMetaUpdated(Date metaUpdated) {
 		this.metaUpdated = metaUpdated;
 	}
+	
+	public Integer getMetaLogicFlag() {
+        return metaLogicFlag;
+    }
+
+    public void setMetaLogicFlag(Integer metaLogicFlag) {
+        this.metaLogicFlag = metaLogicFlag;
+    }
 
 	public Object copy() {
 		try {
