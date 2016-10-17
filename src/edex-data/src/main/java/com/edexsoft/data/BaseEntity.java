@@ -12,10 +12,10 @@ public abstract class BaseEntity implements Cloneable, Serializable {
 
 	@JsonIgnore
 	private Date metaCreated;
-	
+
 	@JsonIgnore
 	private Date metaUpdated;
-	
+
 	@JsonIgnore
 	private Integer metaLogicFlag;
 
@@ -42,14 +42,14 @@ public abstract class BaseEntity implements Cloneable, Serializable {
 	public void setMetaUpdated(Date metaUpdated) {
 		this.metaUpdated = metaUpdated;
 	}
-	
-	public Integer getMetaLogicFlag() {
-        return metaLogicFlag;
-    }
 
-    public void setMetaLogicFlag(Integer metaLogicFlag) {
-        this.metaLogicFlag = metaLogicFlag;
-    }
+	public Integer getMetaLogicFlag() {
+		return metaLogicFlag;
+	}
+
+	public void setMetaLogicFlag(Integer metaLogicFlag) {
+		this.metaLogicFlag = metaLogicFlag;
+	}
 
 	public Object copy() {
 		try {
