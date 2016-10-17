@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.edexsoft.framework.EdexException;
 
+// TODO:JsonNode
 public class JsonHelper {
 	private static final ObjectMapper objMapper;
 
