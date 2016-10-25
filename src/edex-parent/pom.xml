@@ -38,10 +38,11 @@
 	</dependencies>
 	
 	<modules>  
-        <module>../edex-framework</module>  
-        <module>../edex-data</module>  
-        <module>../edex-security</module>  
-        <module>../edex-webmvc</module>  
+        <module>../edex-framework</module>
+        <module>../edex-data</module>
+        <module>../edex-security</module>
+        <module>../edex-security-implement</module>
+        <module>../edex-webmvc</module>
     </modules>  
 
 	<build>
