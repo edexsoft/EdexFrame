@@ -8,11 +8,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.edexsoft.framework.security.User;
-import com.edexsoft.framework.security.UserService;
+import com.edexsoft.framework.security.IUserService;
 
 public class WebAuthorizeInteceptor extends HandlerInterceptorAdapter {
 	@Autowired
-	UserService userService;
+	IUserService userService;
 
 	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

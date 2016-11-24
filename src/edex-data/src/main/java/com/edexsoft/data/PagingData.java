@@ -2,7 +2,7 @@ package com.edexsoft.data;
 
 import java.util.List;
 
-public class PagingDataResult<T> {
+public class PagingData<T> {
 	private Long pageSize;
 	private Long pageIndex;
 	public Long getPageSize() {
