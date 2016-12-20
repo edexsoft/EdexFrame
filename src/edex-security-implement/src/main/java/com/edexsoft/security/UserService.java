@@ -10,7 +10,10 @@ public class UserService implements IUserService {
 	
 	public User findByAccount(String account){
 		
-		return new User();
+		User oUser=new User();
+		oUser.setAccount(account);
+		oUser.setPassword("a");
+		return oUser;
 		
 	}
 	
