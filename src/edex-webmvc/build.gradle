@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.edexsoft'
+version = '0.0.1-SNAPSHOT'
+
+description = """edex-webmvc"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'log4j', name: 'log4j', version:'1.2.17'
+    compile group: 'joda-time', name: 'joda-time', version:'2.3'
+    compile group: 'org.ocpsoft.prettytime', name: 'prettytime', version:'3.2.7.Final'
+    compile group: 'org.jsoup', name: 'jsoup', version:'1.9.2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.8.3'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version:'4.5.2'
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'4.3.2.RELEASE'
+    compile group: 'com.edexsoft', name: 'edex-security', version:'0.0.1-SNAPSHOT'
+    testCompile group: 'junit', name: 'junit', version:'3.8.1'
+}

@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.edexsoft</groupId>
-	<artifactId>edex-parent</artifactId>
+	<artifactId>edex-frame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>edex-parent</name>
+	<name>edex-frame</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -35,13 +35,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<modules>  
-        <module>../edex-framework</module>
-        <module>../edex-data</module>
-        <module>../edex-security</module>
-        <module>../edex-security-implement</module>
-        <module>../edex-webmvc</module>
+        <module>edex-framework</module>
+        <module>edex-data</module>
+        <module>edex-security</module>
+        <module>edex-security-implement</module>
+        <module>edex-webmvc</module>
     </modules>  
 
 	<build>
