@@ -1,0 +1,3 @@
+rootProject.name = 'edex-frame'
+
+include 'edex-framework','edex-data', 'edex-security', 'edex-security-implements'
